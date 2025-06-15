@@ -50,6 +50,7 @@ Route::post('/update-target', [DashboardController::class, 'updateTarget'])->nam
 
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderHistoryController;
 
 Route::middleware(['web'])->group(function () {
     Route::get('/input-pesanan', [OrderController::class, 'create'])->name('orders.create');
@@ -62,3 +63,6 @@ Route::get('/input-pesanan', [OrderController::class, 'create'])->name('orders.c
 // Route::get('/target-penjualan', [TargetController::class, 'index'])->name('target-penjualan');
 // Route::get('/kalkulator-hpp', [HppController::class, 'index'])->name('kalkulator-hpp');
 Route::get('/order-history', [OrderController::class, 'history'])->name('order-history');
+
+Route::get('/order-history', [OrderHistoryController::class, 'index'])->name('order-history');
+Route::get('/order-history/export', [OrderHistoryController::class, 'export'])->name('order-history.export');

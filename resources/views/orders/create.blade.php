@@ -1,4 +1,3 @@
-<!-- resources/views/orders/create.blade.php -->
 <!DOCTYPE html>
 <html lang="id">
 
@@ -7,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Input Pesanan</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body class="bg-gradient-to-br from-blue-50 via-white to-purple-50 min-h-screen">
@@ -38,31 +38,48 @@
                     <div>
                         <label for="nama" class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
                         <input type="text" id="nama" name="nama" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
                             placeholder="Nama produk...">
                     </div>
 
                     <!-- Harga -->
                     <div>
                         <label for="harga" class="block text-sm font-medium text-gray-700 mb-1">Harga (Rp)</label>
-                        <input type="number" id="harga" name="harga" min="0" step="100" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                            placeholder="Harga produk...">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span class="text-gray-500">Rp</span>
+                            </div>
+                            <input type="text" id="harga" name="harga" required
+                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                placeholder="0" inputmode="numeric" pattern="[0-9.,]*">
+                        </div>
                     </div>
 
                     <!-- Jumlah -->
                     <div>
                         <label for="jumlah" class="block text-sm font-medium text-gray-700 mb-1">Jumlah</label>
-                        <input type="number" id="jumlah" name="jumlah" min="1" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
-                            placeholder="Jumlah produk...">
+                        <div class="relative">
+                            <input type="number" id="jumlah" name="jumlah" min="1" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                                placeholder="0">
+                            {{-- <div class="absolute right-3 top-3 flex flex-col space-y-1">
+                                <button type="button" onclick="incrementQuantity()"
+                                    class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                                    <i class="fas fa-chevron-up text-xs"></i>
+                                </button>
+                                <button type="button" onclick="decrementQuantity()"
+                                    class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                                    <i class="fas fa-chevron-down text-xs"></i>
+                                </button>
+                            </div> --}}
+                        </div>
                     </div>
 
                     <!-- Tanggal (readonly) -->
                     <div>
                         <label for="tanggal" class="block text-sm font-medium text-gray-700 mb-1">Tanggal</label>
                         <input type="text" id="tanggal" readonly
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-100"
                             value="{{ now()->format('d F Y') }}">
                     </div>
                 </div>
@@ -70,12 +87,12 @@
                 <!-- Action Buttons -->
                 <div class="mt-8 flex flex-col sm:flex-row justify-end gap-3">
                     <a href="{{ route('dashboard') }}"
-                        class="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition text-center">
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 font-medium hover:bg-gray-50 transition text-center">
                         Kembali ke Dashboard
                     </a>
                     <button type="submit"
-                        class="px-6 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                        Simpan Pesanan
+                        class="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center justify-center">
+                        <i class="fas fa-save mr-2"></i> Simpan Pesanan
                     </button>
                 </div>
             </form>
@@ -98,41 +115,41 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     No</th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Nama Produk</th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Harga</th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Jumlah</th>
                                 <th
-                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Total</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($todayOrders as $index => $order)
                                 <tr class="{{ $index % 2 === 0 ? 'bg-white' : 'bg-gray-50' }} hover:bg-gray-100">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $index + 1 }}
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $index + 1 }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ $order->nama }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Rp
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">Rp
                                         {{ number_format($order->harga, 0, ',', '.') }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $order->jumlah }}
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{{ $order->jumlah }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-blue-600">Rp
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-blue-600">Rp
                                         {{ number_format($order->harga * $order->jumlah, 0, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                             <tr class="bg-gray-100 font-semibold">
-                                <td colspan="4" class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 text-right">
+                                <td colspan="4" class="px-4 py-4 whitespace-nowrap text-sm text-gray-900 text-right">
                                     Total Keseluruhan:</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
+                                <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-green-600">
                                     @php
                                         $total = $todayOrders->sum(function ($order) {
                                             return $order->harga * $order->jumlah;
@@ -172,19 +189,52 @@
     </div>
 
     <script>
-        // Format harga saat input
-        document.getElementById('harga').addEventListener('blur', function(e) {
-            const value = parseInt(e.target.value);
-            if (!isNaN(value)) {
-                e.target.value = value.toLocaleString('id-ID');
+        // Format harga sebagai Rupiah
+        document.getElementById('harga').addEventListener('input', function(e) {
+            // Hapus semua karakter selain angka
+            let value = this.value.replace(/[^0-9]/g, '');
+
+            // Format angka dengan titik sebagai pemisah ribuan
+            if (value.length > 0) {
+                value = parseInt(value, 10).toLocaleString('id-ID');
             }
+
+            this.value = value;
         });
 
-        // Hapus format saat fokus untuk memudahkan edit
-        document.getElementById('harga').addEventListener('focus', function(e) {
-            const value = e.target.value.replace(/\./g, '');
-            if (!isNaN(value)) {
-                e.target.value = value;
+        // Saat form disubmit, hapus format titik sebelum dikirim
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const hargaInput = document.getElementById('harga');
+            hargaInput.value = hargaInput.value.replace(/\./g, '');
+        });
+
+        // Fungsi untuk menambah jumlah
+        function incrementQuantity() {
+            const jumlahInput = document.getElementById('jumlah');
+            let value = parseInt(jumlahInput.value) || 0;
+            jumlahInput.value = value + 1;
+        }
+
+        // Fungsi untuk mengurangi jumlah
+        function decrementQuantity() {
+            const jumlahInput = document.getElementById('jumlah');
+            let value = parseInt(jumlahInput.value) || 0;
+            if (value > 1) {
+                jumlahInput.value = value - 1;
+            }
+        }
+
+        // Fokus ke input harga dan format saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            const hargaInput = document.getElementById('harga');
+            hargaInput.focus();
+
+            // Format ulang jika ada nilai default
+            if (hargaInput.value) {
+                let value = hargaInput.value.replace(/[^0-9]/g, '');
+                if (value.length > 0) {
+                    hargaInput.value = parseInt(value, 10).toLocaleString('id-ID');
+                }
             }
         });
     </script>
