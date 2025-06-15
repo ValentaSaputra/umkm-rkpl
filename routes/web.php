@@ -17,9 +17,33 @@ Route::middleware([
 });
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\KalkulatorController;
-use App\Http\Controllers\TargetController;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
-Route::get('/kalkulator-hpp', [KalkulatorController::class, 'index'])->name('kalkulator.hpp');
-Route::get('/target-penjualan', [TargetController::class, 'index'])->name('target.penjualan');
+
+use App\Http\Controllers\HppCalculatorController;
+
+Route::get('/kalkulator-hpp', [HppCalculatorController::class, 'index'])->name('kalkulator.hpp');
+Route::post('/kalkulator-hpp', [HppCalculatorController::class, 'calculate'])->name('kalkulator.hpp.calculate');
+
+
+
+use App\Http\Controllers\SalesTargetController;
+
+// Sales Target Routes
+Route::prefix('sales-target')->name('sales-target.')->group(function () {
+    Route::get('/', [SalesTargetController::class, 'index'])->name('index');
+    Route::post('/update-target', [SalesTargetController::class, 'updateTarget'])->name('update');
+    Route::post('/update-achievement', [SalesTargetController::class, 'updateAchievement'])->name('update-achievement');
+    Route::get('/data', [SalesTargetController::class, 'getTargetData'])->name('data');
+    Route::get('/history', [SalesTargetController::class, 'history'])->name('history');
+});
+
+// Alternative routes (untuk kompatibilitas dengan kode lama)
+Route::get('/target-penjualan', [SalesTargetController::class, 'index'])->name('target-penjualan');
+Route::post('/update-target', [SalesTargetController::class, 'updateTarget'])->name('updateTarget');
+
+// Route untuk menampilkan dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Route untuk mengupdate target penjualan
+Route::post('/update-target', [DashboardController::class, 'updateTarget'])->name('updateTarget');
