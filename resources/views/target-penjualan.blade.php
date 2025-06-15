@@ -188,7 +188,7 @@
 
             <form action="{{ route('sales-target.update') }}" method="POST" id="targetForm" class="space-y-6">
                 @csrf
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
                     <div>
                         <label for="monthlyTarget" class="block text-sm font-medium text-gray-700 mb-2">
                             📈 Target Penjualan Bulanan (Rp)
@@ -203,7 +203,7 @@
                         <p class="text-xs text-gray-500 mt-1">Contoh: 25000000 untuk target 25 juta</p>
                     </div>
 
-                    <div>
+                    {{-- <div>
                         <label for="currentAchievement" class="block text-sm font-medium text-gray-700 mb-2">
                             💰 Pencapaian Saat Ini (Rp) - Opsional
                         </label>
@@ -212,7 +212,7 @@
                             placeholder="5000000" min="0" step="100000"
                             value="{{ old('currentAchievement', $currentAchievement) }}">
                         <p class="text-xs text-gray-500 mt-1">Kosongkan jika tidak ingin mengubah pencapaian</p>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Tombol Submit -->
@@ -233,8 +233,8 @@
                     id="progressPercent">{{ $achievementPercentage }}%</span>
             </div>
             <div class="w-full bg-gray-200 rounded-full h-4 mb-4">
-                <div class="progress-bar bg-gradient-to-r from-green-400 to-blue-500 h-4 rounded-full"
-                    id="progressBar" style="width: {{ min($achievementPercentage, 100) }}%"></div>
+                <div class="progress-bar bg-gradient-to-r from-green-400 to-blue-500 h-4 rounded-full" id="progressBar"
+                    style="width: {{ min($achievementPercentage, 100) }}%"></div>
             </div>
             <div class="grid grid-cols-2 gap-4 text-sm">
                 <div>

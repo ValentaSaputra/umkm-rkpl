@@ -55,3 +55,10 @@ Route::middleware(['web'])->group(function () {
     Route::get('/input-pesanan', [OrderController::class, 'create'])->name('orders.create');
     Route::post('/input-pesanan', [OrderController::class, 'store'])->name('orders.store');
 });
+
+Route::get('/today-sales', [DashboardController::class, 'getTodaySales']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/input-pesanan', [OrderController::class, 'create'])->name('orders.create');
+// Route::get('/target-penjualan', [TargetController::class, 'index'])->name('target-penjualan');
+// Route::get('/kalkulator-hpp', [HppController::class, 'index'])->name('kalkulator-hpp');
+Route::get('/order-history', [OrderController::class, 'history'])->name('order-history');
