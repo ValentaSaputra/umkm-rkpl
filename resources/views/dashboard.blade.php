@@ -178,7 +178,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Card 1: Input Pesanan -->
                 <div class="bg-white rounded-xl shadow-lg overflow-hidden hover-scale cursor-pointer transition-all duration-300 hover:shadow-xl slide-up"
-                    onclick="window.location.href='/input-pesanan'" style="animation-delay: 0.6s">
+                    onclick="window.location.href='{{ route('orders.create') }}'" style="animation-delay: 0.6s">
                     <div class="p-6">
                         <div class="w-16 h-16 gradient-bg-2 rounded-full flex items-center justify-center mb-4 mx-auto">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

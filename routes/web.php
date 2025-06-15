@@ -47,3 +47,11 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 // Route untuk mengupdate target penjualan
 Route::post('/update-target', [DashboardController::class, 'updateTarget'])->name('updateTarget');
+
+
+use App\Http\Controllers\OrderController;
+
+Route::middleware(['web'])->group(function () {
+    Route::get('/input-pesanan', [OrderController::class, 'create'])->name('orders.create');
+    Route::post('/input-pesanan', [OrderController::class, 'store'])->name('orders.store');
+});
